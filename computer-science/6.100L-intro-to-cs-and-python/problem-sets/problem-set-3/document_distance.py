@@ -53,14 +53,7 @@ def get_frequencies(input_iterable):
     Note: 
         You can assume that the only kinds of white space in the text documents we provide will be new lines or space(s) between words (i.e. there are no tabs)
     """
-    result = {}
-    for char in input_iterable:
-        if char in result.keys():
-            result[char] += 1
-        else:
-            result[char] = 1
-    
-    return result
+    return { char: input_iterable.count(char) for char in set(input_iterable) }
 
 
 ### Problem 2: Letter Frequencies ###
@@ -132,17 +125,11 @@ def get_most_frequent_words(freq_dict1, freq_dict2):
     return an alphabetically ordered list of all these words.
     """
     iterable = freq_dict1.keys() | freq_dict2.keys()
-    counts = {}
-    for e in iterable:
-        counts[e] = freq_dict1.get(e) + freq_dict2.get(e)
+    counts = { e: freq_dict1.get(e) + freq_dict2.get(e) for e in iterable}
 
     max_freq = max(counts.values())
-    
-    result = []
-    for k, v in counts.items():
-        if v == max_freq:
-            result.append(k)
-    return result
+        
+    return [k for k, v in counts.items() if v == max_freq]
 
 ### Problem 5: Finding TF-IDF ###
 def get_tf(file_path):
@@ -160,10 +147,8 @@ def get_tf(file_path):
     list = text_to_list(text)
     freqs = get_frequencies(list)
     
-    result = {}
-    for e in freqs:
-        result[e] = freqs[e]/len(list)
-    return result
+    return { e: freqs[e]/len(list) for e in freqs}
+    
 
 def get_idf(file_paths):
     """
@@ -189,10 +174,7 @@ def get_idf(file_paths):
     result = {}
     
     for e in iterable:
-        doc_count = 0
-        for file in file_paths:
-            if e in text_to_list(load_file(file)):
-                doc_count += 1
+        doc_count = sum(1 for file in file_paths if e in text_to_list(load_file(file)))
         result[e] = math.log10(total_docs/doc_count)
 
     return result
@@ -214,12 +196,9 @@ def get_tfidf(tf_file_path, idf_file_paths):
         """
     tf = get_tf(tf_file_path)
     idf = get_idf(idf_file_paths)
-    result = []
-    for word in tf:
-        result.append((word, tf[word]*idf[word]))
-    return sorted(result, key=lambda a: a[1])
-
-
+    
+    return sorted([(word, tf[word]*idf[word]) for word in tf], key=lambda a: a[1])
+    
 
 if __name__ == "__main__":
     pass
