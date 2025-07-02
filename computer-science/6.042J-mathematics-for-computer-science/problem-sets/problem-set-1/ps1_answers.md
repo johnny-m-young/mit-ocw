@@ -12,13 +12,11 @@ $(b)$ $\forall x\in X,\: TA(x)\land S(x)\implies A(x)$
 
 ###
 
-$(c)$ $\nexists x\in X,\: TA(x)\land \neg A(x)$ **CHECK THIS?**
+$(c)$ $\nexists x\in X,\: TA(x)\land \neg A(x)$
 
 ###
 
 $(d)$ $\sum_{x=0}^X TA(x)\land \neg S(x) \geq 3$
-
-$\exists x\in X,\: TA(x)\land \neg S(x)$ **NEED TO FINISH THIS ONE**
 
 ## Problem 2
 
@@ -63,6 +61,8 @@ Both sides evaluate to the same thing, for the same values of $P$, $Q$ and $R$. 
 | $F$ | $F$ | $T$ | $T$                                                           |
 | $F$ | $F$ | $F$ | $T$                                                           |
 
+This proves the statement $\neg (P\lor (Q\land R)) = (\neg P)\land (\neg Q\lor \neg R)$
+
 ### $(b)$
 
 For the left side of the equation the truth table is as follows:
@@ -103,6 +103,8 @@ So truth table for this whole equation looks like this:
 | $F$ | $T$ | $F$ | $T$                                                         |
 | $F$ | $F$ | $T$ | $T$                                                         |
 | $F$ | $F$ | $F$ | $T$                                                         |
+
+This disproves the statement $\neg (P\land (Q\lor R)) = \neg P \lor (\neg Q\lor \neg R)$
 
 ## Problem 3
 
@@ -179,4 +181,93 @@ You could have done this by first splitting the 12 coins into three piles of 4 c
 
 ## Problem 5
 
+### Theorem
+
+If $r$ is irrational, then $r^\frac{1}{5}$ is irrational
+
+### Proof by contrapositive
+
+I'm going to prove the theorem by proving the contrapositive: if $r^\frac{1}{5}$ is rational, then $r$ is rational.
+
+As $r^\frac{1}{5}$ is rational, it means we can say $r^\frac{1}{5} = \frac{a}{b}$ where $a$ and $b$ are integers.
+
+Therefore $r = \frac{a^5}{b^5}$
+
+This means $r$ must be a rational number, because if $a$ and $b$ are both integers then $a^5$ and $b^5$ must also be integers, meaning $r$ can be represented as a fraction of two integers.
+
 ## Problem 6
+
+## Theorem
+
+In the equation $w^2 + x^2 + y^2 = z^2$, $2\mid z\iff 2\mid w,x,y$
+
+## Proof
+
+To prove this, lets consider each permutation of whether $w$, $x$ and $y$ are odd/even
+
+| $w$  | $x$  | $y$  |
+| ---- | ---- | ---- |
+| even | even | even |
+| even | even | odd  |
+| even | odd  | even |
+| even | odd  | odd  |
+| odd  | even | even |
+| odd  | even | odd  |
+| odd  | odd  | even |
+| odd  | odd  | odd  |
+
+Representing even numbers as $2a$ and odd numbers as $2a + 1$ where $a$ is an integer, we can rewrite the table as follows (where $i$, $j$ and $k$ are integers)
+
+| $w$      | $x$      | $y$      |
+| -------- | -------- | -------- |
+| $2i$     | $2j$     | $2k$     |
+| $2i$     | $2j$     | $2k + 1$ |
+| $2i$     | $2j + 1$ | $2k$     |
+| $2i$     | $2j + 1$ | $2k + 1$ |
+| $2i + 1$ | $2j$     | $2k$     |
+| $2i + 1$ | $2j$     | $2k + 1$ |
+| $2i + 1$ | $2j + 1$ | $2k$     |
+| $2i + 1$ | $2j + 1$ | $2k + 1$ |
+
+Taking the square of both of these representations of even and odd numbers, $(2a)^2 = 4a^2$ and $(2a + 1)^2 = 4a^2 + 4a + 1$. So we can evaluate the equation in the theorem
+
+| $w$      | $x$      | $y$      | $w^2 + x^2 + y^2 = z^2$                               |
+| -------- | -------- | -------- | ----------------------------------------------------- |
+| $2i$     | $2j$     | $2k$     | $4i^2 + 4j^2 + 4k^2 = z^2$                            |
+| $2i$     | $2j$     | $2k + 1$ | $4i^2 + 4j^2 + 4k^2 + 4k + 1 = z^2$                   |
+| $2i$     | $2j + 1$ | $2k$     | $4i^2 + 4j^2 + 4j + 1 + 4k^2 = z^2$                   |
+| $2i$     | $2j + 1$ | $2k + 1$ | $4i^2 + 4j^2 + 4j + 1 + 4k^2 + 4k + 1 = z^2$          |
+| $2i + 1$ | $2j$     | $2k$     | $4i^2 + 4i + 1 + 4j^2 + 4k^2 = z^2$                   |
+| $2i + 1$ | $2j$     | $2k + 1$ | $4i^2 + 4i + 1 + 4j^2 + 4k^2 + 4k + 1 = z^2$          |
+| $2i + 1$ | $2j + 1$ | $2k$     | $4i^2 + 4i + 1 + 4j^2 + 4j + 1 + 4k^2 = z^2$          |
+| $2i + 1$ | $2j + 1$ | $2k + 1$ | $4i^2 + 4i + 1 + 4j^2 + 4j + 1 + 4k^2 + 4k + 1 = z^2$ |
+
+Which, by taking a factor of 4 out, we can rearrange to
+
+| $w$      | $x$      | $y$      | $w^2 + x^2 + y^2 = z^2$                    |
+| -------- | -------- | -------- | ------------------------------------------ |
+| $2i$     | $2j$     | $2k$     | $4(i^2 + j^2 + k^2) = z^2$                 |
+| $2i$     | $2j$     | $2k + 1$ | $4(i^2 + j^2 + k^2 + k) + 1 = z^2$         |
+| $2i$     | $2j + 1$ | $2k$     | $4(i^2 + j^2 + j + k^2) + 1 = z^2$         |
+| $2i$     | $2j + 1$ | $2k + 1$ | $4(i^2 + j^2 + j + k^2 + k) + 2 = z^2$     |
+| $2i + 1$ | $2j$     | $2k$     | $4(i^2 + i + j^2 + k^2) + 1 = z^2$         |
+| $2i + 1$ | $2j$     | $2k + 1$ | $4(i^2 + i + j^2 + k^2 + k) + 2  = z^2$    |
+| $2i + 1$ | $2j + 1$ | $2k$     | $4(i^2 + i + j^2 + j + k^2) + 2 = z^2$     |
+| $2i + 1$ | $2j + 1$ | $2k + 1$ | $4(i^2 + i + j^2 + j + k^2 + k) + 3 = z^2$ |
+
+For $z$ to be even, this must satisfy $4\mid z^2$, or $z^2\pmod 4\equiv 0$. If $z$ is odd (i.e. $z = 2a+1$), then $z^2\pmod 4\equiv 1$ as $4a^2+4a+1\pmod 4= 4(a^2+a)+1\pmod 4 = 0 + 1 = 1$
+
+Evaluating the left side of the equation with respect to $\pmod 4$ gives
+
+| $w$      | $x$      | $y$      | $w^2 + x^2 + y^2\pmod 4$ |
+| -------- | -------- | -------- | ------------------------ |
+| $2i$     | $2j$     | $2k$     | $0$                      |
+| $2i$     | $2j$     | $2k + 1$ | $1$                      |
+| $2i$     | $2j + 1$ | $2k$     | $1$                      |
+| $2i$     | $2j + 1$ | $2k + 1$ | $2$                      |
+| $2i + 1$ | $2j$     | $2k$     | $1$                      |
+| $2i + 1$ | $2j$     | $2k + 1$ | $2$                      |
+| $2i + 1$ | $2j + 1$ | $2k$     | $2$                      |
+| $2i + 1$ | $2j + 1$ | $2k + 1$ | $3$                      |
+
+Therefore, $2\mid z\iff 2\mid w,x,y$ for the equation $w^2+x^2+y^2=z^2$. We can also conclude that there are no solutions to the equation $w^2+x^2+y^2=z^2$ when 2 or more of $w$, $x$ and $y$ are odd.
