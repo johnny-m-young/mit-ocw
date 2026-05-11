@@ -139,4 +139,73 @@ $=3^n - 2^n$ ✅
 
 ## Problem 6
 
+Relative positions:
+
+| 1   | 2   | 3   | 4   |
+| --- | --- | --- | --- |
+| 5   | 6   | 7   | 8   |
+| 9   | 10  | 11  | 12  |
+| 13  | 14  | 15  | 16  |
+
+There are two types of move possible: a row move and a column move.
+
+### Part A
+
+#### Lemma 1
+
+A row move does not change the order of the letters.
+
+##### Proof
+
+In a row move, we move a letter from cell $i$ into an adjacent cell ($i\pm 1$). Nothing else moves, hence the order of the items is preserved.
+
+### Part B
+
+#### Lemma 2
+
+A column move changes the relative order of precisely 3 pairs of letters.
+
+##### Proof
+
+In a column move, we move a letter from cell $i$ to a blank space in cell $i\pm 4$. When an item moves 4 positions, it changes relative order with 3 other letters - $i\pm 1$, $i\pm 2$ and $i\pm 3$.
+
+### Part C
+
+#### Lemma 3
+
+The parity of the number of inverted pairs stays the same in a row move.
+
+##### Proof
+
+By Lemma 1, the relative order of letters does not change in a row move. Therefore, the number of inverted pairs must stay the same and hence the parity will remain the same.
+
+### Part D
+
+### Lemma 4
+
+The number of inverted pairs can only increase by 3, decrease by 3 or stay the same.
+
+#### Proof
+
+In a row move, the number of inverted pairs stays the same (by Lemma 1).
+
+In a column move, 3 pairs of letters change relative order (by Lemma 2).
+
+- All pairs were in correct order: number of inversions increases by 3.
+- 1 inverted pair present:
+- 2 inverted pairs present:
+- 3 inverted pairs present:
+
+| A   | B   | C   | E   |
+| --- | --- | --- | --- |
+| D   | -   | F   | G   |
+| H   | I   | J   | K   |
+| L   | M   | N   | O   |
+
+| A   | -   | C   | E   |
+| --- | --- | --- | --- |
+| D   | B   | F   | G   |
+| H   | I   | J   | K   |
+| L   | M   | N   | O   |
+
 ## Problem 7
